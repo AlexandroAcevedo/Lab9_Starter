@@ -104,12 +104,15 @@
       let operator = document.querySelector('#operator').value;
 
       try {
+        const validNumber = /^-?\\d+(\\.\\d+)?$/;
+
+        if (!validNumber.test(firstNum) || !validNumber.test(secondNum)) {
+          throw new CalculationError("Inputs must be valid numbers (no letters or symbols).");
+        }
+
         let num1 = parseFloat(firstNum);
         let num2 = parseFloat(secondNum);
 
-        if (isNaN(num1) || isNaN(num2)) {
-          throw new CalculationError("Invalid number input.");
-        }
         if (operator === '/' && num2 === 0) {
           throw new CalculationError("Cannot divide by zero.");
         }
@@ -141,13 +144,13 @@
     });
     errorBtns[9].addEventListener('click', () => console.groupEnd());
     errorBtns[10].addEventListener('click', () => console.table([
-      { name: "Sigmar", score: 90 },
+      { name: "Sigma", score: 90 },
       { name: "AceAlex", score: 85 }
     ]));
     errorBtns[11].addEventListener('click', () => console.time("timer"));
     errorBtns[12].addEventListener('click', () => console.timeEnd("timer"));
     errorBtns[13].addEventListener('click', () => console.trace("Trace button triggered"));
-    errorBtns[14].addEventListener('click', () => notAFunction()); // Triggers global error
+    errorBtns[14].addEventListener('click', () => notAFunction()); // Global error trigger
 
     // Global Error Handler
     window.onerror = function (message, source, lineno, colno, error) {
