@@ -107,7 +107,7 @@
         const validNumber = /^-?\\d+(\\.\\d+)?$/;
 
         if (!validNumber.test(firstNum) || !validNumber.test(secondNum)) {
-          throw new CalculationError("Inputs must be valid numbers (no letters or symbols).");
+          throw new CalculationError("Inputs must be valid numbers.");
         }
 
         let num1 = parseFloat(firstNum);
